@@ -4,7 +4,7 @@
   "description": "Generic node api with authentication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/Thimey/node-api#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
     "express": "^4.14.0",
     "lodash": "^4.13.1",
-    "mongoose": "^4.5.2"
+    "mongoose": "^4.5.2",
+    "morgan": "^1.7.0"
   }
 }

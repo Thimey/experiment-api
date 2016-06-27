@@ -26,7 +26,7 @@ app.use(function(err, req, res, next) {
 
   console.log(err);
   // logger.error(err.stack);
-  res.status(500).send('Oops');
+  res.status(500).send('something fucked up');
 });
 
 module.exports = app;

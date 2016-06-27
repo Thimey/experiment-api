@@ -18,21 +18,18 @@ exports.params = function (req, res, next, id) {
 		});
 };
 
-
 exports.index = function (req, res, next) {
 	User.find({})
 		.select('-password')
 		.execAsync()
 		.then(function (users) {
-			res.json(_.map(users, function (user) {
-				return user.toJson();
-			}));
+			console.log(users);
+			res.json(users);
 		})
 		.catch(function (err) {
 			next(err);
 		});
 };
-
 
 exports.getOne = function (req, res) {
 	res.send(req.user);
@@ -47,6 +44,16 @@ exports.create = function (req, res) {
 			res.json(user);
 		})
 		.catch(function (err) {
-			console.log(err);
+			next(err);
+		});
+};
+
+exports.delete = function (req, res) {
+	req.user.removeAsync()
+		.then(function (removed) {
+			res.send('user removed!');
+		})
+		.catch(function (err) {
+			next(err);
 		});
 };

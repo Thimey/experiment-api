@@ -11,7 +11,7 @@ require('mongoose').connect(config.db.url);
 // }
 
 //app middleware stack
-// require('./middleware/appMiddleware')(app);
+require('./middleware/appMiddleware')(app);
 
 // mount api routes
 app.use('/api', api);

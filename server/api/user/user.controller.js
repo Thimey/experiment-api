@@ -1,7 +1,10 @@
 var User = require('./user.model.js');
+var _ = require('lodash');
 
-export.params = function (req, res, next, id) {
-	User.findByIdAsync(id)
+exports.params = function (req, res, next, id) {
+	User.findById(id)
+		.select('-password')
+		.execAsync()
 		.then(function (user) {
 			if(!user) { 
 				next( new Error('Could not find user with that id'));
@@ -16,8 +19,18 @@ export.params = function (req, res, next, id) {
 };
 
 
-exports.index = function (req, res) {
-
+exports.index = function (req, res, next) {
+	User.find({})
+		.select('-password')
+		.execAsync()
+		.then(function (users) {
+			res.json(_.map(users, function (user) {
+				return user.toJson();
+			}));
+		})
+		.catch(function (err) {
+			next(err);
+		});
 };
 
 
@@ -26,6 +39,7 @@ exports.getOne = function (req, res) {
 };
 
 exports.create = function (req, res) {
+	console.log(req.body)
 	var newUser = new User(req.body);
 
 	newUser.saveAsync()

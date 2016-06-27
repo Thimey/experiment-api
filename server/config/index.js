@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 var config = {
-	dev: 'developent',
+	dev: 'development',
 	test: 'testing',
 	prod: 'production',
 	port: process.env.PORT || 3000
@@ -14,7 +14,7 @@ config.env = process.env.NODE_ENV;
 var envConfig;
 
 try {
-	envConfig = require(`./${config.env}`) || {};
+	envConfig = require('./' + config.env) || {};
 } catch (err) {
 	envConfig = {};
 }

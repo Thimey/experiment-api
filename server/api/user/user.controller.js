@@ -57,3 +57,18 @@ exports.delete = function (req, res) {
 			next(err);
 		});
 };
+
+exports.edit = function (req, res) {
+	var user = req.user;
+	var editedUser = req.body;
+
+	_.merge(user, editedUser);
+
+	user.saveAsync()
+		.then(function (user) {
+			res.json(user);
+		})
+		.catch(function (err) {
+			next(err);
+		});
+};

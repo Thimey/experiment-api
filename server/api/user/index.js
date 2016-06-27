@@ -10,7 +10,7 @@ router.route('/')
 
 router.route('/:id')
 	.get(controller.getOne)
-	// .put(controller.edit)
+	.put(controller.edit)
 	.delete(controller.delete);
 
 module.exports = router;

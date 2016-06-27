@@ -16,11 +16,17 @@ require('mongoose').connect(config.db.url);
 // mount api routes
 app.use('/api', api);
 // app.use('/auth', auth);
- app.use(function (req, res) {
- 	res.send('blah');
- })
 
+app.use(function(err, req, res, next) {
+  // if error thrown from jwt validation check
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send('Invalid token');
+    return;
+  }
 
-
+  console.log(err);
+  // logger.error(err.stack);
+  res.status(500).send('Oops');
+});
 
 module.exports = app;

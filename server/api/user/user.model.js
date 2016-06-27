@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Promise = rquire('bluebird');
 var bcrypt = require('bcrypt');
+
+Promise.promisifyAll(mongoose);
 
 var UserSchema = new Schema({
 	email: {

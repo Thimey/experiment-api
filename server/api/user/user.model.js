@@ -8,6 +8,7 @@ Promise.promisifyAll(mongoose);
 var UserSchema = new Schema({
 	email: {
 		type: String,
+		lowercase: true,
 		required: true,
 		unique: true
 	},
@@ -30,7 +31,7 @@ UserSchema.methods = {
 		return bcrypt.compareSync(plainTextPword, this.password);
 	},
 
-	// hash the passwords
+	// hash and salt the password
   encryptPassword: function(plainTextPword) {
     if (!plainTextPword) {
       return '';

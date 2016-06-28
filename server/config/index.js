@@ -4,7 +4,12 @@ var config = {
 	dev: 'development',
 	test: 'testing',
 	prod: 'production',
-	port: process.env.PORT || 3000
+	port: process.env.PORT || 3000,
+	jwt: {
+		secret: process.env.JWT || 'testSecret',
+		expiresInMinutes: 24 * 60 * 10
+	}
+	
 }
 
 // default to development environment

@@ -1,16 +1,9 @@
 var router = require('express').Router();
-var controller = require('./auth.controller.js');
-var passport = require('passport');
 
-router.post('/signup',
-	passport.authenticate('local', { 
-		successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
-    session: false
-  }),
-  controller.signup
-);
+// confiure passport middleware
+require('./local/passport');
 
+// mount local route
+router.use('/local', require('./local'));
 
 module.exports = router;

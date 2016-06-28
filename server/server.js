@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var api = require('./api');
 var config = require('./config');
-// var auth = require('./auth');
+var auth = require('./auth');
 
 require('mongoose').connect(config.db.url);
 
@@ -15,7 +15,7 @@ require('./middleware/appMiddleware')(app);
 
 // mount api routes
 app.use('/api', api);
-// app.use('/auth', auth);
+app.use('/auth', auth);
 
 app.use(function(err, req, res, next) {
   // if error thrown from jwt validation check

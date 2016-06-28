@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var config = require('../config');
-var User = require('../../user/user.model');
+var User = require('../api/user/user.model');
 
 var checkToken = require({ secret: config.jwt.secret });
 

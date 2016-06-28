@@ -21,6 +21,7 @@
     "bcrypt": "^0.8.7",
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
+    "composable-middleware": "^0.3.0",
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",

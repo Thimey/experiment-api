@@ -18,6 +18,10 @@ exports.params = function (req, res, next, id) {
 		});
 };
 
+exports.me = function (req, res) {
+	res.json(req.user.toJson());
+}
+
 exports.index = function (req, res, next) {
 	User.find({})
 		.select('-password')

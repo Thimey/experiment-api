@@ -1,27 +1,22 @@
 var passport = require('passport');
-var localStratergy = require('passport-local');
+var localStrategy = require('passport-local');
 
 var User = require('../../api/user/user.model');
 
-passport.use(new localStratergy({
+passport.use(new localStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
-	function (email, password, done) {
-		User.findOneAsync({ email: email.toLowerCase()})
-			.then(function (user) {
-				if (!user) {
-					return done(null, false, { msg: 'email does not exist!'});
-				}
-				// if user, check password is correct
-				if (!user.authenticate(password)) {
-					return done(null, false, { msg: 'incorrect password!'});
-				} else {
-					return done(null, user);
-				}
-			})
-			.catch(function (err) {
-				return done(err);
-			});
-}));
-
+  function(email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.authenticate(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));

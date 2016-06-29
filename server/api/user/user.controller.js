@@ -1,5 +1,6 @@
 var User = require('./user.model.js');
 var _ = require('lodash');
+var auth = require('../../auth/auth.service');
 
 exports.params = function (req, res, next, id) {
 	User.findById(id)
@@ -19,7 +20,7 @@ exports.params = function (req, res, next, id) {
 };
 
 exports.me = function (req, res) {
-	res.json(req.user.toJson());
+	res.json(req.user.filter());
 }
 
 exports.index = function (req, res, next) {
@@ -39,13 +40,15 @@ exports.getOne = function (req, res) {
 	res.send(req.user);
 };
 
-exports.create = function (req, res) {
-	console.log(req.body)
+exports.create = function (req, res, next) {
 	var newUser = new User(req.body);
 
 	newUser.saveAsync()
 		.then(function (user) {
-			res.json(user);
+			res.send({
+				token: auth.signToken(user._id),
+				user: user.filter()
+			});
 		})
 		.catch(function (err) {
 			next(err);

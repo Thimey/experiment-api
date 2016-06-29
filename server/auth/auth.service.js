@@ -16,13 +16,13 @@ exports.signToken = function (id) {
 	var payload = {_id: id};
 	var secret = config.jwt.secret;
 	var options = {
-		expiresInMinutes: config.jwt.expireInMinutes
-	}
+		expiresIn: config.jwt.expireInMinutes
+	};
 	return jwt.sign(
 		payload,
 		secret,
 		options
-	});
+	);
 };
 
 function decodeToken (req, res, next) {

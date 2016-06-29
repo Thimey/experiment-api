@@ -28,7 +28,7 @@ UserSchema.pre('save', function (next) {
 UserSchema.methods = {
 	// Check the password
 	authenticate: function (password) {
-		return bcrypt.compareSync(plainTextPword, this.password);
+		return bcrypt.compareSync(password, this.password);
 	},
 
 	// hash and salt the password
@@ -42,7 +42,7 @@ UserSchema.methods = {
   },
 
   // method to remove password from object for response
-  toJson: function() {
+  filter: function() {
     var obj = this.toObject()
     delete obj.password;
     return obj;
@@ -50,4 +50,4 @@ UserSchema.methods = {
 }
 
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

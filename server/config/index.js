@@ -7,7 +7,7 @@ var config = {
 	port: process.env.PORT || 3000,
 	jwt: {
 		secret: process.env.JWT || 'testSecret',
-		expiresInMinutes: 24 * 60 * 10
+		expiresInMinutes: 24 * 60 * 60 * 10
 	}
 	
 }

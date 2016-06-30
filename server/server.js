@@ -3,8 +3,15 @@ var app = express();
 var api = require('./api');
 var config = require('./config');
 var auth = require('./auth');
+var logger = require('./util/logger');
 
 require('mongoose').connect(config.db.url);
+
+// if (config.env === 'testing') {
+// 	require('./seed/testing');
+// } else if (config.env === 'development') {
+// 	require('./seed/development');
+// }
 
 // if (config.seed) {
 // 	require('./util/seed');

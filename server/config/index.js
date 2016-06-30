@@ -24,4 +24,6 @@ try {
 	envConfig = {};
 }
 
-module.exports = _.merge(config, envConfig);
+var merged = _.merge(config, envConfig);
+
+module.exports = merged;

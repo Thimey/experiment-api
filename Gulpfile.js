@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
-var sync    = require('run-sequence');
 
 var paths = {
 	testIntegration: 'server/api/**/*.integration.js',

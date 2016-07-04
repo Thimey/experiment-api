@@ -6,7 +6,6 @@ router.post('/', function(req, res, next) {
   passport.authenticate('local', 
   	{ session: false },
   	function(err, user, info) {
-  		console.log('USER', user);
 	    var error = err || info;
 	    if (error) {
 	      return res.status(401).json(error);

@@ -59,6 +59,7 @@ exports.delete = function (req, res) {
 	req.user.removeAsync()
 		.then(function (removed) {
 			res.send('user removed!');
+			return null;
 		})
 		.catch(function (err) {
 			next(err);
@@ -70,7 +71,7 @@ exports.edit = function (req, res) {
 	var editedUser = req.body;
 
 	_.merge(user, editedUser);
-
+	console.log(user);
 	user.saveAsync()
 		.then(function (user) {
 			res.json(user);

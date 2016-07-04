@@ -1,7 +1,8 @@
 var router = require('express').Router();
 var controller = require('./user.controller');
 var auth = require('../../auth/auth.service');
-var checkUser = auth.isAuthenticated;
+// var checkUser = auth.isAuthenticated;
+var checkUser = [auth.decodeToken(), auth.getUser()];
 
 router.param('id', controller.params);
 router.get('/me', checkUser, controller.me);
